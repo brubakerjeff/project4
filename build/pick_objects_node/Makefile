@@ -705,6 +705,33 @@ rosgraph_msgs_generate_messages_cpp/fast:
 	cd /home/robond/catkin_ws/build && $(MAKE) -f pick_objects_node/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make pick_objects_node/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
+src/pick_objects_node.o: src/pick_objects_node.cpp.o
+
+.PHONY : src/pick_objects_node.o
+
+# target to build an object file
+src/pick_objects_node.cpp.o:
+	cd /home/robond/catkin_ws/build && $(MAKE) -f pick_objects_node/CMakeFiles/pick_objects_node.dir/build.make pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o
+.PHONY : src/pick_objects_node.cpp.o
+
+src/pick_objects_node.i: src/pick_objects_node.cpp.i
+
+.PHONY : src/pick_objects_node.i
+
+# target to preprocess a source file
+src/pick_objects_node.cpp.i:
+	cd /home/robond/catkin_ws/build && $(MAKE) -f pick_objects_node/CMakeFiles/pick_objects_node.dir/build.make pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.i
+.PHONY : src/pick_objects_node.cpp.i
+
+src/pick_objects_node.s: src/pick_objects_node.cpp.s
+
+.PHONY : src/pick_objects_node.s
+
+# target to generate assembly for a file
+src/pick_objects_node.cpp.s:
+	cd /home/robond/catkin_ws/build && $(MAKE) -f pick_objects_node/CMakeFiles/pick_objects_node.dir/build.make pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.s
+.PHONY : src/pick_objects_node.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -754,6 +781,9 @@ help:
 	@echo "... roscpp_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... rosgraph_msgs_generate_messages_cpp"
+	@echo "... src/pick_objects_node.o"
+	@echo "... src/pick_objects_node.i"
+	@echo "... src/pick_objects_node.s"
 .PHONY : help
 
 

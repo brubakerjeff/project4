@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /home/robond/catkin_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_1eddc/fast"
-/usr/bin/make -f CMakeFiles/cmTC_1eddc.dir/build.make CMakeFiles/cmTC_1eddc.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_4381e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_4381e.dir/build.make CMakeFiles/cmTC_4381e.dir/build
 make[1]: Entering directory '/home/robond/catkin_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_1eddc.dir/CheckSymbolExists.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_1eddc.dir/CheckSymbolExists.c.o   -c /home/robond/catkin_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_1eddc
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_1eddc.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_1eddc.dir/CheckSymbolExists.c.o  -o cmTC_1eddc -rdynamic 
-CMakeFiles/cmTC_1eddc.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_4381e.dir/CheckSymbolExists.c.o
+/usr/bin/cc     -o CMakeFiles/cmTC_4381e.dir/CheckSymbolExists.c.o   -c /home/robond/catkin_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_4381e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4381e.dir/link.txt --verbose=1
+/usr/bin/cc       CMakeFiles/cmTC_4381e.dir/CheckSymbolExists.c.o  -o cmTC_4381e -rdynamic 
+CMakeFiles/cmTC_4381e.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x16): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_1eddc.dir/build.make:97: recipe for target 'cmTC_1eddc' failed
-make[1]: *** [cmTC_1eddc] Error 1
+CMakeFiles/cmTC_4381e.dir/build.make:97: recipe for target 'cmTC_4381e' failed
+make[1]: *** [cmTC_4381e] Error 1
 make[1]: Leaving directory '/home/robond/catkin_ws/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_1eddc/fast' failed
-make: *** [cmTC_1eddc/fast] Error 2
+Makefile:126: recipe for target 'cmTC_4381e/fast' failed
+make: *** [cmTC_4381e/fast] Error 2
 
 File /home/robond/catkin_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/robond/catkin_ws/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_20351/fast"
-/usr/bin/make -f CMakeFiles/cmTC_20351.dir/build.make CMakeFiles/cmTC_20351.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_c2335/fast"
+/usr/bin/make -f CMakeFiles/cmTC_c2335.dir/build.make CMakeFiles/cmTC_c2335.dir/build
 make[1]: Entering directory '/home/robond/catkin_ws/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_20351.dir/CheckFunctionExists.c.o
-/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_20351.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
-Linking C executable cmTC_20351
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_20351.dir/link.txt --verbose=1
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_20351.dir/CheckFunctionExists.c.o  -o cmTC_20351 -rdynamic -lpthreads 
+Building C object CMakeFiles/cmTC_c2335.dir/CheckFunctionExists.c.o
+/usr/bin/cc    -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_c2335.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.5/Modules/CheckFunctionExists.c
+Linking C executable cmTC_c2335
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2335.dir/link.txt --verbose=1
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_c2335.dir/CheckFunctionExists.c.o  -o cmTC_c2335 -rdynamic -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_20351.dir/build.make:97: recipe for target 'cmTC_20351' failed
-make[1]: *** [cmTC_20351] Error 1
+CMakeFiles/cmTC_c2335.dir/build.make:97: recipe for target 'cmTC_c2335' failed
+make[1]: *** [cmTC_c2335] Error 1
 make[1]: Leaving directory '/home/robond/catkin_ws/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_20351/fast' failed
-make: *** [cmTC_20351/fast] Error 2
+Makefile:126: recipe for target 'cmTC_c2335/fast' failed
+make: *** [cmTC_c2335/fast] Error 2
 
 

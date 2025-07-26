@@ -57,7 +57,69 @@ include pick_objects_node/CMakeFiles/pick_objects_node.dir/progress.make
 # Include the compile flags for this target's objects.
 include pick_objects_node/CMakeFiles/pick_objects_node.dir/flags.make
 
-pick_objects_node/CMakeFiles/pick_objects_node.dir/requires:
+pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o: pick_objects_node/CMakeFiles/pick_objects_node.dir/flags.make
+pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o: /home/robond/catkin_ws/src/pick_objects_node/src/pick_objects_node.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/robond/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o"
+	cd /home/robond/catkin_ws/build/pick_objects_node && /usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o -c /home/robond/catkin_ws/src/pick_objects_node/src/pick_objects_node.cpp
+
+pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.i"
+	cd /home/robond/catkin_ws/build/pick_objects_node && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/robond/catkin_ws/src/pick_objects_node/src/pick_objects_node.cpp > CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.i
+
+pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.s"
+	cd /home/robond/catkin_ws/build/pick_objects_node && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/robond/catkin_ws/src/pick_objects_node/src/pick_objects_node.cpp -o CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.s
+
+pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o.requires:
+
+.PHONY : pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o.requires
+
+pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o.provides: pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o.requires
+	$(MAKE) -f pick_objects_node/CMakeFiles/pick_objects_node.dir/build.make pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o.provides.build
+.PHONY : pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o.provides
+
+pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o.provides.build: pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o
+
+
+# Object files for target pick_objects_node
+pick_objects_node_OBJECTS = \
+"CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o"
+
+# External object files for target pick_objects_node
+pick_objects_node_EXTERNAL_OBJECTS =
+
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: pick_objects_node/CMakeFiles/pick_objects_node.dir/build.make
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/libactionlib.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/libroscpp.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libboost_signals.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/librosconsole.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/librosconsole_log4cxx.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/librosconsole_backend_interface.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/liblog4cxx.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libboost_regex.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/libxmlrpcpp.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/libroscpp_serialization.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/librostime.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /opt/ros/kinetic/lib/libcpp_common.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libboost_system.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libboost_thread.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libpthread.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: /usr/lib/x86_64-linux-gnu/libconsole_bridge.so
+/home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node: pick_objects_node/CMakeFiles/pick_objects_node.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/robond/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable /home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node"
+	cd /home/robond/catkin_ws/build/pick_objects_node && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/pick_objects_node.dir/link.txt --verbose=$(VERBOSE)
+
+# Rule to build all files generated by this target.
+pick_objects_node/CMakeFiles/pick_objects_node.dir/build: /home/robond/catkin_ws/devel/lib/pick_objects/pick_objects_node
+
+.PHONY : pick_objects_node/CMakeFiles/pick_objects_node.dir/build
+
+pick_objects_node/CMakeFiles/pick_objects_node.dir/requires: pick_objects_node/CMakeFiles/pick_objects_node.dir/src/pick_objects_node.cpp.o.requires
 
 .PHONY : pick_objects_node/CMakeFiles/pick_objects_node.dir/requires
 
