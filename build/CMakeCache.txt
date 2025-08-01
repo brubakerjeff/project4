@@ -262,13 +262,13 @@ actionlib_DIR:PATH=/opt/ros/kinetic/share/actionlib/cmake
 actionlib_msgs_DIR:PATH=/opt/ros/kinetic/share/actionlib_msgs/cmake
 
 //Value Computed by CMake
-add_markers_BINARY_DIR:STATIC=/home/robond/catkin_ws/build/add_markers
+add_markers_BINARY_DIR:STATIC=/home/robond/catkin_ws/build/add_markers_node
 
 //Dependencies for target
 add_markers_LIB_DEPENDS:STATIC=
 
 //Value Computed by CMake
-add_markers_SOURCE_DIR:STATIC=/home/robond/catkin_ws/src/add_markers
+add_markers_SOURCE_DIR:STATIC=/home/robond/catkin_ws/src/add_markers_node
 
 //The directory containing a CMake configuration file for bond.
 bond_DIR:PATH=/opt/ros/kinetic/share/bond/cmake
