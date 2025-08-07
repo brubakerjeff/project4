@@ -34,9 +34,9 @@
 #include <visualization_msgs/Marker.h>
 // %EndTag(INCLUDES)%
 uint8_t robotState = 0;
-void poseCallback(const std_msgs::Odometry::ConstPtr& msg) {
-  robotState =msg->data;
-  ROS_INFO("Robot State %s",std::to_string(robotState)  );
+void poseCallback(const nav_msgs::Odometry::ConstPtr& msg) {
+  robotState =msg->pose.pose.position.x;
+  ROS_INFO("Robot State %0.2d",robotState  );
 }
 
 // %Tag(INIT)%
