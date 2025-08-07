@@ -29,9 +29,15 @@
 
 // %Tag(FULLTEXT)%
 // %Tag(INCLUDES)%
+#include "nav_msgs/Odometry.h"
 #include <ros/ros.h>
 #include <visualization_msgs/Marker.h>
 // %EndTag(INCLUDES)%
+uint8_t robotState = 0;
+void poseCallback(const std_msgs::Odometry::ConstPtr& msg) {
+  robotState =msg->data;
+  ROS_INFO("Robot State %s",std::to_string(robotState)  );
+}
 
 // %Tag(INIT)%
 int main( int argc, char** argv )
@@ -41,7 +47,7 @@ int main( int argc, char** argv )
   ros::Rate r(1);
   ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 // %EndTag(INIT)%
-
+  ros::Subscriber pose_sub = n.subscribe("/my_robot_pose",1,poseCallBack)
   // Set our initial shape type to be a cube
 // %Tag(SHAPE_INIT)%
   uint32_t shape = visualization_msgs::Marker::CUBE;
@@ -132,31 +138,9 @@ int main( int argc, char** argv )
     ROS_INFO("Cube placed at drop off zone.");
     ros::Duration(5.0).sleep();   // pause for 5 seconds 
 
-// %EndTag(PUBLISH)%
-
-    // Cycle between different shapes
-// %Tag(CYCLE_SHAPES)%
-    /*switch (shape)
-    {
-    case visualization_msgs::Marker::CUBE:
-      shape = visualization_msgs::Marker::SPHERE;
-      break;
-    case visualization_msgs::Marker::SPHERE:
-      shape = visualization_msgs::Marker::ARROW;
-      break;
-    case visualization_msgs::Marker::ARROW:
-      shape = visualization_msgs::Marker::CYLINDER;
-      break;
-    case visualization_msgs::Marker::CYLINDER:
-      shape = visualization_msgs::Marker::CUBE;
-      break;
-    }*/
-// %EndTag(CYCLE_SHAPES)%
-
-// %Tag(SLEEP_END)%
     r.sleep();
   }
-// %EndTag(SLEEP_END)%
+
 }
-// %EndTag(FULLTEXT)%
+
 
