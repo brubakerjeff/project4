@@ -10,7 +10,7 @@ sleep 15
 roslaunch turtlebot_gazebo  amcl_demo.launch &
 sleep 15
 roslaunch turtlebot_rviz_launchers view_navigation.launch &
-sleep 45
+read -p "add marker in rviz"
 rosrun add_markers add_markers_node
 
 
