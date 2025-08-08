@@ -138,7 +138,7 @@ int main( int argc, char** argv )
     ROS_INFO("Cube placed at drop off zone.");
     ros::Duration(5.0).sleep();   // pause for 5 seconds 
 
-    r.sleep();
+    ros::spinOnce();
   }
 
 }
