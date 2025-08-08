@@ -34,9 +34,9 @@
 #include <visualization_msgs/Marker.h>
 // %EndTag(INCLUDES)%
 uint8_t robotState = 0;
-void poseCallback(const nav_msgs::Odometry::ConstPtr& msg) {
-  robotState =msg->pose.pose.position.x;
-  ROS_INFO("Robot State %0.2d",robotState  );
+void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
+  float ff =msg->pose.pose.position.x;
+  ROS_INFO("Robot State %0.2f",ff );
 }
 
 // %Tag(INIT)%
@@ -47,7 +47,7 @@ int main( int argc, char** argv )
   ros::Rate r(1);
   ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 // %EndTag(INIT)%
-  ros::Subscriber pose_sub = n.subscribe("/my_robot_pose",1,poseCallBack)
+  ros::Subscriber pose_sub = n.subscribe("/my_robot_pose",1,poseCallBack);
   // Set our initial shape type to be a cube
 // %Tag(SHAPE_INIT)%
   uint32_t shape = visualization_msgs::Marker::CUBE;
