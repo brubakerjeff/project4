@@ -1,6 +1,6 @@
 #!/bin/bash
 
-./test_navigation.sh
+#./test_navigation.sh
 # Launch the pick_objects node
 cd ../../
 roslaunch turtlebot_gazebo turtlebot_world.launch

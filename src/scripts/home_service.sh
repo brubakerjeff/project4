@@ -4,9 +4,11 @@ roslaunch turtlebot_gazebo turtlebot_world.launch &
 sleep 15
 roslaunch turtlebot_gazebo  amcl_demo.launch &
 sleep 15
-
 xterm -e "source devel/setup.bash && rosrun add_markers add_markers_node" &
 sleep 15
 roslaunch turtlebot_rviz_launchers view_navigation.launch &
 sleep 15
-rosrun picks_objects pick_objects_node
+rosrun pick_objects pick_objects_node
+sleep 15
+rosrun add_markers add_markers_node
+sleep 15
