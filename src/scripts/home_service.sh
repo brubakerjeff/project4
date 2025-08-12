@@ -1,14 +1,12 @@
 cd ../../
 source devel/setup.bash
-roslaunch turtlebot_gazebo turtlebot_world.launch &
+roslaunch my_robot world.launch &
 sleep 15
-roslaunch turtlebot_gazebo  amcl_demo.launch &
+roslaunch my_robot  amcl.launch &
 sleep 15
-xterm -e "source devel/setup.bash && rosrun add_markers add_markers_node" &
+roslaunch my_robot view_navigation.launch &
 sleep 15
-roslaunch turtlebot_rviz_launchers view_navigation.launch &
+rosrun pick_objects pick_objects_node &
 sleep 15
-rosrun pick_objects pick_objects_node
-sleep 15
-rosrun add_markers add_markers_node
+rosrun add_markers add_markers_node &
 sleep 15

@@ -1,7 +1,7 @@
 (
     cd ../..
     source devel/setup.bash
-    xterm -e "roslaunch ./src/turtlebot_simulator/turtlebot_gazebo/launch/turtlebot_world.launch " &
+    xterm -e "roslaunch my_robot world.launch " &
     sleep 5
     xterm -e "roslaunch ./src/turtlebot_simulator/turtlebot_gazebo/launch/gmapping_demo.launch " &
     sleep 5
