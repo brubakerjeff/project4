@@ -5,8 +5,8 @@
     sleep 5
     xterm -e "roslaunch ./src/my_robot/launch/gmapping.launch"  &
     sleep 5
-    xterm -e "roslaunch ./src/turtlebot_interactions/turtlebot_rviz_launchers/launch/view_navigation.launch " &
+    xterm -e "roslaunch ./src/my_robot/launch/view_navigation.launch " &
     sleep 5
-    xterm -e "roslaunch ./src/turtlebot/turtlebot_teleop/launch/keyboard_teleop.launch " &
+    xterm -e "roslaunch ./src/my_robot/launch/keyboard.launch " &
     sleep 5
 )
