@@ -12,13 +12,13 @@
                  <!-- Launch other relevant files-->
                  <include file="$(find my_robot)/launch/robot_description.launch"/>   
   <!-- World File -->
-  <arg name="world_file" default="$(find my_robot)/worlds/jeffwithmap.world"/>
+  <arg name="world_file" default="$(find my_robot)/worlds/jeff.world"/>
 
   <!-- Launch Gazebo World -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="gui" value="true" />
     <arg name="world_name" value="$(arg world_file)"/>
-  </include>
+  </include> 
              <!-- Find my robot Description-->
              <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot)/urdf/my_robot.xacro'"/>
 
