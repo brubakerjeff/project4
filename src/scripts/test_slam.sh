@@ -7,6 +7,6 @@
     sleep 5
     xterm -e "roslaunch ./src/my_robot/launch/view_navigation.launch " &
     sleep 5
-    xterm -e "roslaunch ./src/my_robot/launch/keyboard.launch " &
+    xterm -e "rosrun teleop_twist_keyboard teleop_twist_keyboard.py" &
     sleep 5
 )
