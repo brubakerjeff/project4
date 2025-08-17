@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#./test_navigation.sh
-# Launch the pick_objects node
 cd ../../
 source devel/setup.bash
 xterm -e "roslaunch my_robot world.launch" &
