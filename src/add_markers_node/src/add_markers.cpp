@@ -166,13 +166,19 @@ int main( int argc, char** argv )
       }
     } else if (state == CARRYING) {
       marker.action = visualization_msgs::Marker::DELETE;   
-      marker.pose.position.x = dropOff[0];
-      marker.pose.position.y = dropOff[1]; 
+      marker.pose.position.x = pickup[0];
+      marker.pose.position.y = pickup[1]; 
       marker_pub.publish(marker);  
       if(atDropOff()) {
         sleep(5);
         state = DROP;
       }
+    }
+    else if (state == DROP) {
+      marker.action = visualization_msgs::Marker::ADD;   
+      marker.pose.position.x = dropOff[0];
+      marker.pose.position.y = dropOff[1]; 
+      marker_pub.publish(marker);  
     }
     /*
     marker_pub.publish(marker);
