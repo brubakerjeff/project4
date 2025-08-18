@@ -6,7 +6,7 @@
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 double pickup[2] = {0.0,0.0};
-double dropOff[2] = {4.0,4.0};
+double dropOff[2] = {7.0,7.0};
 
 int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
@@ -53,14 +53,11 @@ int main(int argc, char** argv){
   // Define a position and orientation for the robot to reach
   goal2.target_pose.pose.position.x = dropOff[0];
   goal2.target_pose.pose.position.y = dropOff[1];
-
-  goal2.target_pose.pose.orientation.w = 5.0;
-
+  goal2.target_pose.pose.orientation.w = 1.0;
    // Send the goal position and orientation for the robot to reach
+
   ROS_INFO("Sending goal");
   ac.sendGoal(goal2);
-  
-  // Wait an infinite time for the results
   ac.waitForResult();
   
   ROS_INFO("Display messaes to track if robot suceessfully reached both zones");
