@@ -8,6 +8,6 @@ xterm -e "roslaunch my_robot view_navigation.launch;pause;" &
 sleep 15
 xterm -e "rosrun add_markers add_markers_node;pause;" &
 sleep 15
-rosparam /set /use_sim_time true
+rosparam set use_sim_time false
 xterm -e "rosrun pick_objects pick_objects_node;pause;" &
 sleep 15

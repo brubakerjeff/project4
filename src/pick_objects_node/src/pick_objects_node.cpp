@@ -42,8 +42,8 @@ int main(int argc, char** argv){
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     ROS_INFO("Reached pickup zone");
   else
-    ROS_INFO("The base failed to move forward 1 meter for some reason");
-  ros::Duration(5.0).sleep();
+    ROS_INFO("The robot failed to move for some reason.");
+  
   move_base_msgs::MoveBaseGoal goal2;
 
   // set up the frame parameters
