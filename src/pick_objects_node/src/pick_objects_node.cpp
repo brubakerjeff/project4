@@ -6,7 +6,7 @@
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 double pickup[2] = {0.0,0.0};
-double dropOff[2] = {7.0,7.0};
+double dropOff[2] = {0.4,0.4};
 
 int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
@@ -60,7 +60,7 @@ int main(int argc, char** argv){
   ac.sendGoal(goal2);
   ac.waitForResult();
   
-  ROS_INFO("Display messaes to track if robot suceessfully reached both zones");
+  ROS_INFO("Display messages to track if robot suceessfully reached both zones");
   // Check if the robot reached its goal
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     ROS_INFO("Reached Drop-Off Zone");

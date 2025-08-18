@@ -8,6 +8,6 @@ xterm -e "roslaunch my_robot  amcl.launch" &
 sleep 15
 xterm -e "roslaunch my_robot view_navigation.launch" &
 sleep 15
-xterm -e "rosrun add_markers add_markers_node"
+xterm -e "rosrun add_markers add_markers_node; pause"
 
 
