@@ -33,12 +33,40 @@
 #include <ros/ros.h>
 #include <visualization_msgs/Marker.h>
 // %EndTag(INCLUDES)%
+double pose[2] = {0,0};
 uint8_t robotState = 0;
 void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
-  float ff =msg->pose.pose.position.x;
-  ROS_INFO("Robot State %0.2f",ff );
+  //double pose2[2];
+  pose[0] =msg->pose.pose.position.x;
+  pose[1] =msg->pose.pose.position.y;
+  //ROS_INFO("Robot State %0.2f %0.2f" ,pose2[0],pose2[1] );
 }
 
+
+
+double pickup[2] = {0.0,0.0};
+double dropOff[2] = {4.0,4.0};
+
+double getdistance(double goal[2])
+{
+  double dx = goal[0]-pose[0];
+  double dy = goal[1]-pose[1];
+  return sqrt(dx*dx + dy*dy);
+}
+
+bool atPickUpZone() {
+  return getdistance(pickup) < 0.1;
+}
+
+bool atDropOff() {
+  return getdistance(dropOff) < 0.1;
+}
+
+enum State {
+  PICK,
+  CARRYING,
+  DROP
+} state = PICK;
 // %Tag(INIT)%
 int main( int argc, char** argv )
 {
@@ -47,7 +75,7 @@ int main( int argc, char** argv )
   ros::Rate r(1);
   ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 // %EndTag(INIT)%
-  ros::Subscriber pose_sub = n.subscribe("/my_robot_pose",1,poseCallBack);
+  ros::Subscriber pose_sub = n.subscribe("/odom",1,poseCallBack);
   // Set our initial shape type to be a cube
 // %Tag(SHAPE_INIT)%
   uint32_t shape = visualization_msgs::Marker::CUBE;
@@ -81,8 +109,11 @@ int main( int argc, char** argv )
 
     // Set the pose of the marker.  This is a full 6DOF pose relative to the frame/time specified in the header
 // %Tag(POSE)%
-    marker.pose.position.x = 0;
-    marker.pose.position.y = 0;
+
+    marker.pose.position.x = pickup[0];
+    marker.pose.position.y = pickup[1];
+    //marker.pose.position.x = 0;
+    ///marker.pose.position.y = 0;
     marker.pose.position.z = 0;
     marker.pose.orientation.x = 0.0;
     marker.pose.orientation.y = 0.0;
@@ -121,7 +152,29 @@ int main( int argc, char** argv )
       sleep(1);
     }
     
-     
+    ros::spinOnce();
+    // Going to pick up zone 
+    if(state == PICK) {
+      //Show the marker at the drop off zone since the robot just arrived at the pick up zone
+      marker.action = visualization_msgs::Marker::ADD;   
+      marker.pose.position.x = pickup[0];
+      marker.pose.position.y = pickup[1]; 
+      marker_pub.publish(marker);  
+      if(atPickUpZone()) {
+        sleep(5);
+        state = CARRYING;
+      }
+    } else if (state == CARRYING) {
+      marker.action = visualization_msgs::Marker::DELETE;   
+      marker.pose.position.x = dropOff[0];
+      marker.pose.position.y = dropOff[1]; 
+      marker_pub.publish(marker);  
+      if(atDropOff()) {
+        sleep(5);
+        state = DROP;
+      }
+    }
+    /*
     marker_pub.publish(marker);
     ROS_INFO("Cube placed at pickup zone.");
      
@@ -132,13 +185,11 @@ int main( int argc, char** argv )
     marker_pub.publish(marker);
     ROS_INFO("Cube removed from pickup zone.");
     ros::Duration(5.0).sleep();   // pause for 5 seconds
-    marker.pose.position.x = -5.70;
-    marker.action = visualization_msgs::Marker::ADD;   // Delete marker
-    marker_pub.publish(marker);
+    
     ROS_INFO("Cube placed at drop off zone.");
     ros::Duration(5.0).sleep();   // pause for 5 seconds 
-
-    ros::spinOnce();
+    */
+    
   }
 
 }
