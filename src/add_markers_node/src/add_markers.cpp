@@ -45,12 +45,13 @@ void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
 
 
 double pickup[2] = {0.546197,2.317277};
-double dropOff[2] = {-1.69675752388,6.08354368243};
+double dropOff[2] = {-0.546197,-5.826971};
 
 double getdistance(double goal[2])
 {
   double dx = goal[0]-pose[0];
   double dy = goal[1]-pose[1];
+//  ROS_INFO("Distance  %0.2f" ,sqrt(dx*dx + dy*dy) );
   return sqrt(dx*dx + dy*dy);
 }
 
@@ -63,10 +64,11 @@ bool atDropOff() {
 }
 
 enum State {
+  HELLO,
   PICK,
   CARRYING,
   DROP
-} state = PICK;
+} state = HELLO;
 // %Tag(INIT)%
 int main( int argc, char** argv )
 {
@@ -100,22 +102,14 @@ int main( int argc, char** argv )
     // Set the marker type.  Initially this is CUBE, and cycles between that and SPHERE, ARROW, and CYLINDER
 // %Tag(TYPE)%
     marker.type = shape;
-// %EndTag(TYPE)%
-
-    // Set the marker action.  Options are ADD, DELETE, and new in ROS Indigo: 3 (DELETEALL)
-// %Tag(ACTION)%
     marker.action = visualization_msgs::Marker::ADD;
     marker.pose.position.x = pickup[0];
     marker.pose.position.y = pickup[1];
-    //marker.pose.position.x = 0;
-    ///marker.pose.position.y = 0;
     marker.pose.position.z = 0;
     marker.pose.orientation.x = 0.0;
     marker.pose.orientation.y = 0.0;
     marker.pose.orientation.z = 0.0;
     marker.pose.orientation.w = 1.0;
-    ROS_INFO("Publishing marker at pickup zone");
-// %EndTag(POSE)%
 
     // Set the scale of the marker -- 1x1x1 here means 1m on a side
 // %Tag(SCALE)%
@@ -149,11 +143,18 @@ int main( int argc, char** argv )
     }
     
     ros::spinOnce();
-    // Going to pick up zone 
-    if(state == PICK) {
+    // Going to pick up zone. There is nodependency on ODM for the first state
+    if(state == HELLO) {
       //Show the marker at the drop off zone since the robot just arrived at the pick up zone
-     
+      ROS_INFO("Publishing marker at pickup zone");
+      marker.action = visualization_msgs::Marker::ADD;
+      marker.pose.position.x = pickup[0];
+      marker.pose.position.y = pickup[1];
+      marker_pub.publish(marker);  
+      state = PICK;
+    } else if(state==PICK) {
       if(atPickUpZone()) {
+        ROS_INFO("Switching to carrying");
         sleep(5);
         state = CARRYING;
       }
@@ -164,12 +165,13 @@ int main( int argc, char** argv )
       marker_pub.publish(marker);  
       ROS_INFO("Deleting marker at pickup zone.");
       if(atDropOff()) {
+        ROS_INFO("Switching to drop off");
         sleep(5);
         state = DROP;
       }
     }
     else if (state == DROP) {
-      ROS_INFO("Publshing at dropoff zone.");
+      ROS_INFO("Publishing at dropoff zone.");
 
       marker.action = visualization_msgs::Marker::ADD;   
       marker.pose.position.x = dropOff[0];

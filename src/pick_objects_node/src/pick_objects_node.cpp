@@ -6,7 +6,7 @@
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
 double pickup[2] = {0.546197,2.317277};
-double dropOff[2] = {-1.69675752388,6.08354368243};
+double dropOff[2] = {-0.546197,-5.826971};
 
 int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
