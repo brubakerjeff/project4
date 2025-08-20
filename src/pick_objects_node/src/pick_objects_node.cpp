@@ -5,8 +5,8 @@
 // Define a client for to send goal requests to the move_base server through a SimpleActionClient
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
-double pickup[2] = {0.0,0.0};
-double dropOff[2] = {0.4,0.4};
+double pickup[2] = {0.350057935449,1.49084831962};
+double dropOff[2] = {-1.69675752388,6.08354368243};
 
 int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
@@ -32,7 +32,7 @@ int main(int argc, char** argv){
   start.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
-  ROS_INFO("Sending goal");
+  ROS_INFO("Sending goal for start");
   ac.sendGoal(start);
   
   // Wait an infinite time for the results
@@ -44,7 +44,14 @@ int main(int argc, char** argv){
   else
     ROS_INFO("The robot failed to move for some reason.");
   
+
+  while(!ac.waitForServer(ros::Duration(5.0))){
+    ROS_INFO("Waiting for the move_base action server to come up");
+  }
+
   move_base_msgs::MoveBaseGoal goal2;
+
+
 
   // set up the frame parameters
   goal2.target_pose.header.frame_id = "map";
