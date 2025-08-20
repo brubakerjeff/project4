@@ -36,15 +36,15 @@
 double pose[2] = {0,0};
 uint8_t robotState = 0;
 void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
-  //double pose2[2];
-  pose[0] =msg->pose.pose.position.x;
-  pose[1] =msg->pose.pose.position.y;
-  //ROS_INFO("Robot State %0.2f %0.2f" ,pose2[0],pose2[1] );
+  double pose2[2];
+  pose2[0] =msg->pose.pose.position.x;
+  pose2[1] =msg->pose.pose.position.y;
+  ROS_INFO("Robot State %0.2f %0.2f" ,pose2[0],pose2[1] );
 }
 
 
 
-double pickup[2] = {0.350057935449,1.49084831962};
+double pickup[2] = {0.546197,2.317277};
 double dropOff[2] = {-1.69675752388,6.08354368243};
 
 double getdistance(double goal[2])
@@ -55,11 +55,11 @@ double getdistance(double goal[2])
 }
 
 bool atPickUpZone() {
-  return getdistance(pickup) < 0.1;
+  return getdistance(pickup) < 0.3;
 }
 
 bool atDropOff() {
-  return getdistance(dropOff) < 0.1;
+  return getdistance(dropOff) < 0.3;
 }
 
 enum State {
@@ -75,7 +75,7 @@ int main( int argc, char** argv )
   ros::Rate r(1);
   ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 // %EndTag(INIT)%
-  ros::Subscriber pose_sub = n.subscribe("/odom",1,poseCallBack);
+  ros::Subscriber pose_sub = n.subscribe("/odom",10,poseCallBack);
   // Set our initial shape type to be a cube
 // %Tag(SHAPE_INIT)%
   uint32_t shape = visualization_msgs::Marker::CUBE;
@@ -105,11 +105,6 @@ int main( int argc, char** argv )
     // Set the marker action.  Options are ADD, DELETE, and new in ROS Indigo: 3 (DELETEALL)
 // %Tag(ACTION)%
     marker.action = visualization_msgs::Marker::ADD;
-// %EndTag(ACTION)%
-
-    // Set the pose of the marker.  This is a full 6DOF pose relative to the frame/time specified in the header
-// %Tag(POSE)%
-
     marker.pose.position.x = pickup[0];
     marker.pose.position.y = pickup[1];
     //marker.pose.position.x = 0;
@@ -119,13 +114,14 @@ int main( int argc, char** argv )
     marker.pose.orientation.y = 0.0;
     marker.pose.orientation.z = 0.0;
     marker.pose.orientation.w = 1.0;
+    ROS_INFO("Publishing marker at pickup zone");
 // %EndTag(POSE)%
 
     // Set the scale of the marker -- 1x1x1 here means 1m on a side
 // %Tag(SCALE)%
-    marker.scale.x = 1.0;
-    marker.scale.y = 1.0;
-    marker.scale.z = 1.0;
+    marker.scale.x = 0.2;
+    marker.scale.y = 0.2;
+    marker.scale.z = 0.2;
 // %EndTag(SCALE)%
 
     // Set the color -- be sure to set alpha to something non-zero!
@@ -156,10 +152,7 @@ int main( int argc, char** argv )
     // Going to pick up zone 
     if(state == PICK) {
       //Show the marker at the drop off zone since the robot just arrived at the pick up zone
-      marker.action = visualization_msgs::Marker::ADD;   
-      marker.pose.position.x = pickup[0];
-      marker.pose.position.y = pickup[1]; 
-      marker_pub.publish(marker);  
+     
       if(atPickUpZone()) {
         sleep(5);
         state = CARRYING;
@@ -169,12 +162,15 @@ int main( int argc, char** argv )
       marker.pose.position.x = pickup[0];
       marker.pose.position.y = pickup[1]; 
       marker_pub.publish(marker);  
+      ROS_INFO("Deleting marker at pickup zone.");
       if(atDropOff()) {
         sleep(5);
         state = DROP;
       }
     }
     else if (state == DROP) {
+      ROS_INFO("Publshing at dropoff zone.");
+
       marker.action = visualization_msgs::Marker::ADD;   
       marker.pose.position.x = dropOff[0];
       marker.pose.position.y = dropOff[1]; 

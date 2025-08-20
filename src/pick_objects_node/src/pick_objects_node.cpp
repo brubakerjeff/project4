@@ -5,7 +5,7 @@
 // Define a client for to send goal requests to the move_base server through a SimpleActionClient
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
-double pickup[2] = {0.350057935449,1.49084831962};
+double pickup[2] = {0.546197,2.317277};
 double dropOff[2] = {-1.69675752388,6.08354368243};
 
 int main(int argc, char** argv){
@@ -32,7 +32,7 @@ int main(int argc, char** argv){
   start.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
-  ROS_INFO("Sending goal for start");
+  ROS_INFO("Driving to pickup zone.");
   ac.sendGoal(start);
   
   // Wait an infinite time for the results
@@ -57,6 +57,8 @@ int main(int argc, char** argv){
   goal2.target_pose.header.frame_id = "map";
   goal2.target_pose.header.stamp = ros::Time::now();
   
+  ROS_INFO("Driving to drop off zone.");
+
   // Define a position and orientation for the robot to reach
   goal2.target_pose.pose.position.x = dropOff[0];
   goal2.target_pose.pose.position.y = dropOff[1];
