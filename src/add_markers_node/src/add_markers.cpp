@@ -35,11 +35,18 @@
 // %EndTag(INCLUDES)%
 double pose[2] = {0,0};
 uint8_t robotState = 0;
+long counter=0;
+long counter2=0;
 void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
-  double pose2[2];
-  pose2[0] =msg->pose.pose.position.x;
-  pose2[1] =msg->pose.pose.position.y;
-  ROS_INFO("Robot State %0.2f %0.2f" ,pose2[0],pose2[1] );
+  if(counter%25==0)
+  {
+    pose[0] =msg->pose.pose.position.x;
+    pose[1] =msg->pose.pose.position.y;
+    counter=counter+1;
+    ROS_INFO("Robot State %f %f" ,pose[0],pose[1] );
+  }
+  //ROS_INFO_STREAM("Odom :" << *msg);
+  
 }
 
 
@@ -49,18 +56,25 @@ double dropOff[2] = {-0.546197,-5.826971};
 
 double getdistance(double goal[2])
 {
+  double pose2[2];
   double dx = goal[0]-pose[0];
   double dy = goal[1]-pose[1];
-//  ROS_INFO("Distance  %0.2f" ,sqrt(dx*dx + dy*dy) );
+  if(counter2%25==0)
+  {  
+    ROS_INFO("Distance  %0.2f" ,sqrt(dx*dx + dy*dy) );
+    counter2=counter2+1;
+  }
+
+    
   return sqrt(dx*dx + dy*dy);
 }
 
 bool atPickUpZone() {
-  return getdistance(pickup) < 0.3;
+  return getdistance(pickup) < 0.2;
 }
 
 bool atDropOff() {
-  return getdistance(dropOff) < 0.3;
+  return getdistance(dropOff) < 0.2;
 }
 
 enum State {
