@@ -38,15 +38,14 @@ uint8_t robotState = 0;
 long counter=0;
 long counter2=0;
 void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
-  if(counter%25==0)
+  if(counter%2500==0)
   {
     pose[0] =msg->pose.pose.position.x;
     pose[1] =msg->pose.pose.position.y;
-    counter=counter+1;
+    
     ROS_INFO("Robot State %f %f" ,pose[0],pose[1] );
   }
-  //ROS_INFO_STREAM("Odom :" << *msg);
-  
+  counter=counter+1; 
 }
 
 
@@ -59,13 +58,12 @@ double getdistance(double goal[2])
   double pose2[2];
   double dx = goal[0]-pose[0];
   double dy = goal[1]-pose[1];
-  if(counter2%25==0)
+  if(counter2%100==0)
   {  
     ROS_INFO("Distance  %0.2f" ,sqrt(dx*dx + dy*dy) );
-    counter2=counter2+1;
-  }
-
     
+  }
+  counter2=counter2+1;
   return sqrt(dx*dx + dy*dy);
 }
 
@@ -138,14 +136,9 @@ int main( int argc, char** argv )
     marker.color.g = 1.0f;
     marker.color.b = 0.0f;
     marker.color.a = 1.0;
-// %EndTag(COLOR)%
 
-// %Tag(LIFETIME)%
     marker.lifetime = ros::Duration();
-// %EndTag(LIFETIME)%
 
-    // Publish the marker
-// %Tag(PUBLISH)%
     while (marker_pub.getNumSubscribers() < 1)
     {
       if (!ros::ok())
@@ -167,17 +160,18 @@ int main( int argc, char** argv )
       marker_pub.publish(marker);  
       state = PICK;
     } else if(state==PICK) {
-      if(atPickUpZone()) {
-        ROS_INFO("Switching to carrying");
-        sleep(5);
-        state = CARRYING;
+        if(atPickUpZone()) {
+          ROS_INFO("Switching to carrying");
+          sleep(5);
+          state = CARRYING;
+          marker.action = visualization_msgs::Marker::DELETE;   
+          marker.pose.position.x = pickup[0];
+          marker.pose.position.y = pickup[1]; 
+          marker_pub.publish(marker);          
       }
     } else if (state == CARRYING) {
-      marker.action = visualization_msgs::Marker::DELETE;   
-      marker.pose.position.x = pickup[0];
-      marker.pose.position.y = pickup[1]; 
-      marker_pub.publish(marker);  
-      ROS_INFO("Deleting marker at pickup zone.");
+
+      ROS_INFO("Cube removed from pickup zone.");
       if(atDropOff()) {
         ROS_INFO("Switching to drop off");
         sleep(5);
@@ -185,29 +179,12 @@ int main( int argc, char** argv )
       }
     }
     else if (state == DROP) {
-      ROS_INFO("Publishing at dropoff zone.");
-
+      ROS_INFO("Cube placed at drop off zone.");
       marker.action = visualization_msgs::Marker::ADD;   
       marker.pose.position.x = dropOff[0];
       marker.pose.position.y = dropOff[1]; 
       marker_pub.publish(marker);  
     }
-    /*
-    marker_pub.publish(marker);
-    ROS_INFO("Cube placed at pickup zone.");
-     
-    // From the first add_markers task
-    
-    ros::Duration(5.0).sleep();   // pause for 5 seconds
-    marker.action = visualization_msgs::Marker::DELETE;   // Delete marker
-    marker_pub.publish(marker);
-    ROS_INFO("Cube removed from pickup zone.");
-    ros::Duration(5.0).sleep();   // pause for 5 seconds
-    
-    ROS_INFO("Cube placed at drop off zone.");
-    ros::Duration(5.0).sleep();   // pause for 5 seconds 
-    */
-    
   }
 
 }
