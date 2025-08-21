@@ -56,7 +56,7 @@ int main( int argc, char** argv )
     ros::Rate r(1);  // 1 Hz rate just to not hammer the system
 
     visualization_msgs::Marker marker;
-    marker.header.frame_id = "base_link";
+    marker.header.frame_id = "/map";
     marker.header.stamp = ros::Time::now();
     marker.ns = "toggle_marker";
     marker.id = 0;
@@ -125,6 +125,7 @@ int main( int argc, char** argv )
                 marker.pose.position.y = dropOff[1]; 
                 marker_pub.publish(marker);  
                 state = END;
+                exit(0);
             }
 
             last_toggle_time = current_time;
