@@ -54,7 +54,6 @@ double dropOff[2] = {-0.546197,-5.826971};
 
 double getdistance(double goal[2])
 {
-  double pose2[2];
   double dx = goal[0]-pose[0];
   double dy = goal[1]-pose[1];
   if(counter2%2000==0)
