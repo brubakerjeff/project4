@@ -50,7 +50,7 @@ void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
 
 
 double pickup[2] = {1.25218,-4.156599};
-double dropOff[2] = {1.462859,-4.156599};
+double dropOff[2] = {3.431139,-1.530365};
 
 double getdistance(double goal[2])
 {
