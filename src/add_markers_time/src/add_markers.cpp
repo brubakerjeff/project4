@@ -88,7 +88,7 @@ int main( int argc, char** argv )
     marker.lifetime = ros::Duration();  // Forever
     marker.pose.position.x = pickup[0];
     marker.pose.position.y = pickup[1];
-    marker_pub.publish(marker);  
+    //marker_pub.publish(marker);  
     bool visible = true;
     ros::Time last_toggle_time = ros::Time::now();
 
@@ -131,8 +131,8 @@ int main( int argc, char** argv )
             last_toggle_time = current_time;
         }
 
-        marker.header.stamp = ros::Time::now();  // Update timestamp
-        marker_pub.publish(marker);
+        //marker.header.stamp = ros::Time::now();  // Update timestamp
+        //marker_pub.publish(marker);
 
         ros::spinOnce();
         r.sleep();
