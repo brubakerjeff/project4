@@ -1,12 +1,12 @@
 #include <ros/ros.h>
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
- 
+#include <iostream>
 // Define a client for to send goal requests to the move_base server through a SimpleActionClient
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
 
-double pickup[2] = {0.546197,2.317277};
-double dropOff[2] = {-0.546197,-5.826971};
+double pickup[2] = {1.25218,-4.156599};
+double dropOff[2] = {1.462859,-4.156599};
 
 int main(int argc, char** argv){
   // Initialize the simple_navigation_goals node
@@ -32,7 +32,7 @@ int main(int argc, char** argv){
   start.target_pose.pose.orientation.w = 1.0;
 
    // Send the goal position and orientation for the robot to reach
-  ROS_INFO("Driving to pickup zone.");
+  ROS_INFO("Driving to pickup zone %.2f,%.2f.",pickup[0],pickup[1]);
   ac.sendGoal(start);
   
   // Wait an infinite time for the results
@@ -65,11 +65,12 @@ int main(int argc, char** argv){
   goal2.target_pose.pose.orientation.w = 1.0;
    // Send the goal position and orientation for the robot to reach
 
-  ROS_INFO("Sending goal");
+  ROS_INFO("Sending goal  %.2f,%.2f.",dropOff[0],dropOff[1]);
   ac.sendGoal(goal2);
   ac.waitForResult();
   
   ROS_INFO("Display messages to track if robot suceessfully reached both zones");
+  std::cin.get();
   // Check if the robot reached its goal
   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
     ROS_INFO("Reached Drop-Off Zone");

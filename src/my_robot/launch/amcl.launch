@@ -20,7 +20,7 @@
   
     <param name="initial_pose_x" value="4.434935"/>
     <param name="initial_pose_y" value="0.040863"/>
-    <param name="initial_pose_a" value="2.71042"/>
+    <param name="initial_pose_a" value="-2.06694"/>
   
 </node>
 

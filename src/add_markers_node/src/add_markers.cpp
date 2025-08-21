@@ -40,7 +40,7 @@ long counter2=0;
 void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
   pose[0] =msg->pose.pose.position.x;
   pose[1] =msg->pose.pose.position.y;
-  if(counter%5000==0)
+  if(counter%10000==0)
   {
     ROS_INFO("Robot State %f %f" ,pose[0],pose[1] );
   }
@@ -49,14 +49,14 @@ void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
 
 
 
-double pickup[2] = {0.546197,2.317277};
-double dropOff[2] = {-0.546197,-5.826971};
+double pickup[2] = {1.25218,-4.156599};
+double dropOff[2] = {1.462859,-4.156599};
 
 double getdistance(double goal[2])
 {
   double dx = goal[0]-pose[0];
   double dy = goal[1]-pose[1];
-  if(counter2%5000==0)
+  if(counter2%10000==0)
   {  
     ROS_INFO("Distance  %0.2f" ,sqrt(dx*dx + dy*dy) );
     
@@ -77,7 +77,8 @@ enum State {
   HELLO,
   PICK,
   CARRYING,
-  DROP
+  DROP,
+  END
 } state = HELLO;
 // %Tag(INIT)%
 int main( int argc, char** argv )
@@ -183,6 +184,7 @@ int main( int argc, char** argv )
       marker.pose.position.x = dropOff[0];
       marker.pose.position.y = dropOff[1]; 
       marker_pub.publish(marker);  
+      state = END;
     }
   }
 
