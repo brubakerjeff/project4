@@ -38,11 +38,10 @@ uint8_t robotState = 0;
 long counter=0;
 long counter2=0;
 void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
+  pose[0] =msg->pose.pose.position.x;
+  pose[1] =msg->pose.pose.position.y;
   if(counter%2500==0)
   {
-    pose[0] =msg->pose.pose.position.x;
-    pose[1] =msg->pose.pose.position.y;
-    
     ROS_INFO("Robot State %f %f" ,pose[0],pose[1] );
   }
   counter=counter+1; 
@@ -58,7 +57,7 @@ double getdistance(double goal[2])
   double pose2[2];
   double dx = goal[0]-pose[0];
   double dy = goal[1]-pose[1];
-  if(counter2%100==0)
+  if(counter2%2000==0)
   {  
     ROS_INFO("Distance  %0.2f" ,sqrt(dx*dx + dy*dy) );
     
