@@ -37,11 +37,19 @@ double pose[2] = {0,0};
 uint8_t robotState = 0;
 long counter=0;
 long counter2=0;
-
+double pickup[2] = {1.25218,-4.156599};
+double dropOff[2] = {3.431139,-1.530365};
 // %Tag(INIT)%
+enum State {
+  HELLO,
+  PICK,
+  CARRYING,
+  DROP,
+  END
+} state = HELLO;
 int main( int argc, char** argv )
 {
-    ros::init(argc, argv, "toggle_marker_node");
+    ros::init(argc, argv, "add_markers_time");
     ros::NodeHandle nh;
     ros::Publisher marker_pub = nh.advertise<visualization_msgs::Marker>("visualization_marker", 1);
 
@@ -55,44 +63,71 @@ int main( int argc, char** argv )
     marker.type = visualization_msgs::Marker::CUBE;
     marker.action = visualization_msgs::Marker::ADD;
 
-    marker.pose.position.x = 0;
-    marker.pose.position.y = 0;
+    marker.pose.position.x = pickup[0];
+    marker.pose.position.y = pickup[1];
     marker.pose.position.z = 0;
     marker.pose.orientation.x = 0.0;
     marker.pose.orientation.y = 0.0;
     marker.pose.orientation.z = 0.0;
     marker.pose.orientation.w = 1.0;
 
-    marker.scale.x = 1.0;
-    marker.scale.y = 1.0;
-    marker.scale.z = 1.0;
+    // Set the scale of the marker -- 1x1x1 here means 1m on a side
+// %Tag(SCALE)%
+    marker.scale.x = 0.2;
+    marker.scale.y = 0.2;
+    marker.scale.z = 0.2;
+// %EndTag(SCALE)%
 
+    // Set the color -- be sure to set alpha to something non-zero!
+// %Tag(COLOR)%
     marker.color.r = 0.0f;
     marker.color.g = 1.0f;
     marker.color.b = 0.0f;
     marker.color.a = 1.0;
 
     marker.lifetime = ros::Duration();  // Forever
-
+    marker.pose.position.x = pickup[0];
+    marker.pose.position.y = pickup[1];
+    marker_pub.publish(marker);  
     bool visible = true;
     ros::Time last_toggle_time = ros::Time::now();
 
     while (ros::ok())
     {
         ros::Time current_time = ros::Time::now();
-        if ((current_time - last_toggle_time).toSec() >= 5.0)
-        {
-            visible = !visible;
-            last_toggle_time = current_time;
-        }
+        if ((current_time - last_toggle_time).toSec() >= 5.0) {
+            if(state == HELLO) {
+                //Show the marker at the drop off zone since the robot just arrived at the pick up zone
+                ROS_INFO("Publishing marker at pickup zone");
+                marker.action = visualization_msgs::Marker::ADD;
+                marker.pose.position.x = pickup[0];
+                marker.pose.position.y = pickup[1];
+                marker_pub.publish(marker);  
+                state = PICK;
+            } else if(state==PICK) {
+                ROS_INFO("Switching to carrying");
+                sleep(5);
+                state = CARRYING;
+                marker.action = visualization_msgs::Marker::DELETE;   
+                marker.pose.position.x = pickup[0];
+                marker.pose.position.y = pickup[1]; 
+                marker_pub.publish(marker);   
+                ROS_INFO("Cube removed from pickup zone.");
+            } else if (state == CARRYING) {
+                    ROS_INFO("Switching to drop off");
+                    sleep(5);
+                    state = DROP;
+            }
+            else if (state == DROP) {
+                ROS_INFO("Cube placed at drop off zone.");
+                marker.action = visualization_msgs::Marker::ADD;   
+                marker.pose.position.x = dropOff[0];
+                marker.pose.position.y = dropOff[1]; 
+                marker_pub.publish(marker);  
+                state = END;
+            }
 
-        if (visible)
-        {
-            marker.action = visualization_msgs::Marker::ADD;
-        }
-        else
-        {
-            marker.action = visualization_msgs::Marker::DELETE;
+            last_toggle_time = current_time;
         }
 
         marker.header.stamp = ros::Time::now();  // Update timestamp

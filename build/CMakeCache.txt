@@ -270,6 +270,12 @@ add_markers_LIB_DEPENDS:STATIC=
 //Value Computed by CMake
 add_markers_SOURCE_DIR:STATIC=/home/robond/catkin_ws/src/add_markers_node
 
+//Value Computed by CMake
+add_markers_time_BINARY_DIR:STATIC=/home/robond/catkin_ws/build/add_markers_time
+
+//Value Computed by CMake
+add_markers_time_SOURCE_DIR:STATIC=/home/robond/catkin_ws/src/add_markers_time
+
 //The directory containing a CMake configuration file for bond.
 bond_DIR:PATH=/opt/ros/kinetic/share/bond/cmake
 
@@ -364,6 +370,12 @@ message_runtime_DIR:PATH=/opt/ros/kinetic/share/message_runtime/cmake
 //The directory containing a CMake configuration file for move_base_msgs.
 move_base_msgs_DIR:PATH=/opt/ros/kinetic/share/move_base_msgs/cmake
 
+//Value Computed by CMake
+my_robot_BINARY_DIR:STATIC=/home/robond/catkin_ws/build/my_robot
+
+//Value Computed by CMake
+my_robot_SOURCE_DIR:STATIC=/home/robond/catkin_ws/src/my_robot
+
 //The directory containing a CMake configuration file for nav_msgs.
 nav_msgs_DIR:PATH=/opt/ros/kinetic/share/nav_msgs/cmake
 
@@ -441,6 +453,12 @@ smclib_DIR:PATH=/opt/ros/kinetic/share/smclib/cmake
 
 //The directory containing a CMake configuration file for std_msgs.
 std_msgs_DIR:PATH=/opt/ros/kinetic/share/std_msgs/cmake
+
+//Value Computed by CMake
+teleop_twist_keyboard_BINARY_DIR:STATIC=/home/robond/catkin_ws/build/teleop_twist_keyboard
+
+//Value Computed by CMake
+teleop_twist_keyboard_SOURCE_DIR:STATIC=/home/robond/catkin_ws/src/teleop_twist_keyboard
 
 //The directory containing a CMake configuration file for tf2.
 tf2_DIR:PATH=/opt/ros/kinetic/share/tf2/cmake
@@ -653,7 +671,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=19
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=22
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

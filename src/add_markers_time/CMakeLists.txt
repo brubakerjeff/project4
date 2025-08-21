@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(add_markers)
+project(add_markers_time)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -145,7 +145,7 @@ add_executable(add_markers_time src/add_markers.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(${PROJECT_NAME}_node
+ target_link_libraries(add_markers_time
    ${catkin_LIBRARIES}
  )
 

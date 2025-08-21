@@ -5,7 +5,9 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs(gtest)
+subdirs(my_robot)
 subdirs(slam_gmapping/slam_gmapping)
+subdirs(teleop_twist_keyboard)
 subdirs(turtlebot/turtlebot)
 subdirs(turtlebot/turtlebot_bringup)
 subdirs(turtlebot/turtlebot_capabilities)
@@ -17,6 +19,7 @@ subdirs(turtlebot_simulator/turtlebot_simulator)
 subdirs(turtlebot_simulator/turtlebot_stage)
 subdirs(turtlebot_simulator/turtlebot_stdr)
 subdirs(add_markers_node)
+subdirs(add_markers_time)
 subdirs(pick_objects_node)
 subdirs(slam_gmapping/gmapping)
 subdirs(turtlebot_interactions/turtlebot_interactive_markers)
