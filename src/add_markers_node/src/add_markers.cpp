@@ -40,7 +40,7 @@ long counter2=0;
 void poseCallBack(const nav_msgs::Odometry::ConstPtr& msg) {
   pose[0] =msg->pose.pose.position.x;
   pose[1] =msg->pose.pose.position.y;
-  if(counter%2500==0)
+  if(counter%5000==0)
   {
     ROS_INFO("Robot State %f %f" ,pose[0],pose[1] );
   }
@@ -56,7 +56,7 @@ double getdistance(double goal[2])
 {
   double dx = goal[0]-pose[0];
   double dy = goal[1]-pose[1];
-  if(counter2%2000==0)
+  if(counter2%5000==0)
   {  
     ROS_INFO("Distance  %0.2f" ,sqrt(dx*dx + dy*dy) );
     
@@ -165,11 +165,12 @@ int main( int argc, char** argv )
           marker.action = visualization_msgs::Marker::DELETE;   
           marker.pose.position.x = pickup[0];
           marker.pose.position.y = pickup[1]; 
-          marker_pub.publish(marker);          
+          marker_pub.publish(marker);   
+          ROS_INFO("Cube removed from pickup zone.");
+       
       }
     } else if (state == CARRYING) {
 
-      ROS_INFO("Cube removed from pickup zone.");
       if(atDropOff()) {
         ROS_INFO("Switching to drop off");
         sleep(5);
